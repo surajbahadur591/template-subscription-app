@@ -20,7 +20,7 @@ exports.handler  = async (event, context) => {
 
       const result = await faunaFetch({query, variables});
 
-      const stripeID = result.data.getUserbyNetlifyId.stripeID;
+      const stripeID = result.data.getUserByNetlifyID.stripeID;
 
       console.log(stripeID);
 
