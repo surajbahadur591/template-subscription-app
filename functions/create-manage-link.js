@@ -11,57 +11,57 @@ exports.handler  = async (event, context) => {
     
 
     
-    // // const variables = { netlifyID : user.sub}; 
-    // const response = await fetch("https://graphql.fauna.com/graphql", {
-    //     method : 'POST',
-    //     headers: {
-    //         Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
-    //     },
-    //     body : JSON.stringify({
-    //         query: `
-    //         query(netlifyID : ID!) {
-    //             getUserByNetlifyID(netlifyID: $netlifyID ){
-    //               stripeID
-    //               netlifyID
-    //             }
+    const  netlifyID = user.sub; 
+
+    const response = await fetch("https://graphql.fauna.com/graphql", {
+        method : 'POST',
+        headers: {
+            Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
+        },
+        body : JSON.stringify({
+            query: `
+            query(netlifyID : ID!) {
+                getUserByNetlifyID(netlifyID: $netlifyID ){
+                  stripeID
+                  netlifyID
+                }
                 
-    //           }
-    //         `,  
-    //         variables : {
-    //             netlifyID,
+              }
+            `,  
+            variables : {
+                netlifyID,
                 
-    //         }
-    //     })
-    // });
+            }
+        })
+    });
 
-    // console.log("response" + response);
-
-
+   
 
 
-    const query = `
-    query(netlifyID : ID!) {
-        getUserByNetlifyID(netlifyID: $netlifyID ){
-          stripeID
-          netlifyID
-        }
+
+
+    // const query = `
+    // query(netlifyID : ID!) {
+    //     getUserByNetlifyID(netlifyID: $netlifyID ){
+    //       stripeID
+    //       netlifyID
+    //     }
         
-      }`;
+    //   }`;
 
-      const variables = { netlifyID : user.sub}; 
-
-
-
-      const result = await faunaFetch(query, variables);
+    //   const variables = { netlifyID : user.sub}; 
 
 
-      const stripeID = result.data.getUserByNetlifyID.stripeID;
+
+    //   const result = await faunaFetch(query, variables);
+
+
 
 
   
 
     return {
         statusCode : 200,
-        body : JSON.stringify(result),
+        body : JSON.stringify(response),
     }
 }
