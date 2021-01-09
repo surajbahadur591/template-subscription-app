@@ -43,15 +43,22 @@
 
                 document.querySelector('pre').innerHTML = JSON.stringify(roles, null, 2);
 
-
-                fetch('/.netlify/functions/create-manage-link', {
+                function redirectToManage(){
+                    fetch('/.netlify/functions/create-manage-link', {
                     method : 'POST',
                     headers: {
                          Authorization: `Bearer ${token}`,
                      },
                 })
                 .then(res => res.json())
-                .then(res => console.log(res));
+                .then(link => {
+                    window.location.href = link
+                })
+
+                }
+
+                document.querySelector('manage-sub').addEventListener('click', redirectToManage);
+               
             })
 
             })
