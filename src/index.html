@@ -36,6 +36,9 @@
 
                 const currentUser = window.netlifyIdentity.currentUser();
                 console.log(currentUser);
+
+                const token1 = currentUser.token.access_token;
+                console.log(token1)
                 const roles =  currentUser.app_metadata.roles;
 
                 document.querySelector('pre').innerHTML = JSON.stringify(roles, null, 2);
@@ -44,7 +47,7 @@
                 fetch('/.netlify/functions/create-manage-link', {
                     method : 'POST',
                     headers: {
-                         Authorization: `Bearer ${token}`,
+                         Authorization: `Bearer ${token1}`,
                      },
                 })
                 .then(res => res.json())
