@@ -37,7 +37,7 @@
                 const currentUser = window.netlifyIdentity.currentUser();
                 console.log(currentUser);
 
-                const token1 = currentUser.token.access_token;
+                const token1 = currentUser.token;
                 console.log(token1)
                 const roles =  currentUser.app_metadata.roles;
 
