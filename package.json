@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "netlify-identity-widget": "^1.9.1",
     "react": "^17.0.1"
   }
 }
