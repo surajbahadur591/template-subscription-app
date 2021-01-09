@@ -33,10 +33,12 @@
             .jwt(true)
             .then((token) => { 
 
+
                 const currentUser = window.netlifyIdentity.currentUser;
+                console.log(currentUser);
                 const roles =  currentUser.app_metadata;
 
-                
+
                 document.querySelector('pre').innerHTML = JSON.stringify(roles, null, 2);
             })
 
