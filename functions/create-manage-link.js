@@ -1,3 +1,5 @@
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const fetch = require('node-fetch');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const {faunaFetch} = require('../utils/fauna')
 
@@ -7,6 +9,8 @@ exports.handler  = async (event, context) => {
 
     console.log(user);
     const netlifyID = user.sub;
+
+    
     // const variables = { netlifyID : user.sub}; 
     const response = await fetch("https://graphql.fauna.com/graphql", {
         method : 'POST',
