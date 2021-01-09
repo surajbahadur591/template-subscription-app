@@ -33,7 +33,7 @@ exports.handler = async (event) => {
                   stripeID
                 }
               }
-            `,
+            `,  
             variables : {
                 netlifyID,
                 stripeID,
