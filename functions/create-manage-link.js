@@ -8,9 +8,7 @@ exports.handler  = async (event, context) => {
     const {user} = context.clientContext;
 
     console.log(user);
-    const netlifyID = user.sub;
-
-    console.log(netlifyID);
+    
 
     
     // // const variables = { netlifyID : user.sub}; 
@@ -41,31 +39,29 @@ exports.handler  = async (event, context) => {
 
 
 
-    // const query = `
-    // query(netlifyID : ID!) {
-    //     getUserByNetlifyID(netlifyID: $netlifyID ){
-    //       stripeID
-    //       netlifyID
-    //     }
+    const query = `
+    query(netlifyID : ID!) {
+        getUserByNetlifyID(netlifyID: $netlifyID ){
+          stripeID
+          netlifyID
+        }
         
-    //   }`;
+      }`;
 
-    //   const variables = { netlifyID : user.sub}; 
-
-    //   console.log(variables);
+      const variables = { netlifyID : user.sub}; 
 
 
-    //   const result = await faunaFetch(query, variables);
-    //   console.log(result);
+
+      const result = await faunaFetch(query, variables);
 
 
-    //   const stripeID = result.data.getUserByNetlifyID.stripeID;
+      const stripeID = result.data.getUserByNetlifyID.stripeID;
 
 
-    //   console.log(stripeID);
+  
 
     return {
         statusCode : 200,
-        body : JSON.stringify(user),
+        body : JSON.stringify(result),
     }
 }
