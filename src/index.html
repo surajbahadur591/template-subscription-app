@@ -27,14 +27,14 @@
     <script>
         
         // getting current user and roles
-        window.netlifyIdentity.on('init',async (user) => {
+        window.netlifyIdentity.on('init', (user) => {
             if(!user) return;
              window.netlifyIdentity.currentUser()
             .jwt(true)
             .then((token) => { 
 
 
-                const currentUser = window.netlifyIdentity.currentUser;
+                const currentUser = window.netlifyIdentity.currentUser();
                 console.log(currentUser);
                 const roles =  currentUser.app_metadata;
 
