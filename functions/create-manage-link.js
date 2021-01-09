@@ -8,7 +8,9 @@ exports.handler  = async (event, context) => {
     const {user} = context.clientContext;
 
     console.log(user);
-    // const netlifyID = user.sub;
+    const netlifyID = user.sub;
+
+    console.log(netlifyID);
 
     
     // // const variables = { netlifyID : user.sub}; 
