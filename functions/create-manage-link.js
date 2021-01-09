@@ -1,6 +1,6 @@
 // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const fetch = require('node-fetch');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const {faunaFetch} = require('../utils/fauna')
 
 
@@ -34,7 +34,7 @@ exports.handler  = async (event, context) => {
         })
     });
 
-    console.log(response);
+    console.log("response" + response);
 
     // const query = `
     // query(netlifyID : ID!) {
