@@ -1,0 +1,14 @@
+{
+  "name": "template-subscription-app",
+  "version": "1.0.0",
+  "description": "template for subscription model web app",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.1"
+  }
+}
