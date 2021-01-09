@@ -36,8 +36,7 @@
 
                 const currentUser = window.netlifyIdentity.currentUser();
                 console.log(currentUser);
-                const roles =  currentUser.app_metadata;
-
+                const roles =  currentUser.app_metadata.roles;
 
                 document.querySelector('pre').innerHTML = JSON.stringify(roles, null, 2);
             })
