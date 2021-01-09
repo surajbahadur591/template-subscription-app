@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "netlify-identity-widget": "^1.9.1",
+    "node-fetch": "^2.6.1",
     "react": "^17.0.1"
   }
 }
