@@ -16,6 +16,36 @@
     <!-- <div data-netlify-identity-menu></div> -->
 
     <div data-netlify-identity-button></div>
+    <pre></pre>
+
+
+    <h2>
+        Get Locked Content !!
+    </h2>
+    <button id="manage-sub"> Manage Subscription</button>
+
+    <script>
+        
+        // getting current user and roles
+        window.netlifyIdentity.on('init',async (user) => {
+            if(!user) return;
+             window.netlifyIdentity.currentUser()
+            .jwt(true)
+            .then((token) => { 
+
+                const currentUser = window.netlifyIdentity.currentUser;
+                const roles =  currentUser.app_metadata;
+
+                
+                document.querySelector('pre').innerHTML = JSON.stringify(roles, null, 2);
+            })
+
+            })
+
+
+
+
+    </script>
     
 </body>
 </html>
