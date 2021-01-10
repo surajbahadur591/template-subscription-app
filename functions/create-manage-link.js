@@ -55,15 +55,16 @@ exports.handler  = async (event, context) => {
 
       const stripeID = result.data.getUserByNetlify.stripeID;
 
-      const link = await stripe.billingPortal.sessions.create( {
-          customer : stripeID,
-          return_url : process.env.url,
-      })
+      const session = await stripe.billingPortal.sessions.create({
+        customer: stripeID,
+        return_url: 'https://www.google.com',
+
+       });
 
   
 
     return {
         statusCode : 301,
-        body : JSON.stringify(link.url),
+        body : JSON.stringify(session.url),
     } 
 }
