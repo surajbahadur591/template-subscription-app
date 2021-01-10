@@ -61,6 +61,8 @@ exports.handler  = async (event, context) => {
 
        });
 
+       console.log(session);
+       console.log(session.url)
   
 
     return {
