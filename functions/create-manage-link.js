@@ -55,7 +55,7 @@ exports.handler  = async (event, context) => {
 
       console.log(result);
 
-      const stripeID = result.data.getUserByNetlify.stripeID;
+      const stripeID = result.data.getUserByNetlifyID.stripeID;
       console.log(stripeID);
 
       const session = await stripe.billingPortal.sessions.create({
