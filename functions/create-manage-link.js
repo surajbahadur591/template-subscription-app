@@ -53,7 +53,10 @@ exports.handler  = async (event, context) => {
 
       const result = await faunaFetch({query, variables});
 
+      console.log(result);
+
       const stripeID = result.data.getUserByNetlify.stripeID;
+      console.log(stripeID);
 
       const session = await stripe.billingPortal.sessions.create({
         customer: stripeID,
