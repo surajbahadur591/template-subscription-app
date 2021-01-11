@@ -60,7 +60,7 @@ exports.handler  = async (event, context) => {
 
       const session = await stripe.billingPortal.sessions.create({
         customer: stripeID,
-        return_url: 'https://www.google.com',
+        return_url: 'https://template-subscription-app.netlify.app/',
 
        });
 
