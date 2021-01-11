@@ -9,7 +9,7 @@ exports.handler = async ({ body, headers }) => {
       );
   
       if (stripeEvent.type === 'customer.subscription.updated') {
-        const eventObject = stripeEvent.data.object;
+        const subscription = stripeEvent.data.object;
         console.log(JSON.stringify(subscription, null, 2))
       }
   
