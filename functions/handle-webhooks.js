@@ -1,6 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const {faunaFetch} = require('../utils/fauna')
-const {fetch} = require('node-fetch')
+const fetch = require('node-fetch')
 
 exports.handler = async ({ body, headers }, context) => {
     try {
