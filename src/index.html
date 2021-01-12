@@ -79,7 +79,7 @@
                 .then(res => res.text())
                 .then((content) => {
 
-                    document.querySelector('#premium').innerText = "apple";
+                    document.querySelector('#premium').innerText = content;
 
                 })
                 .then(err => console.log(err))
