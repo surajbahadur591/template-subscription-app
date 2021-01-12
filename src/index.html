@@ -34,8 +34,13 @@
             .then((token) => { 
 
 
-                const currentUser = window.netlifyIdentity.currentUser();
-                console.log(currentUser);
+                // const currentUser = window.netlifyIdentity.currentUser();
+
+                const parts = token.split('.');
+                const currentUser = JSON.parse(atob(parts[1]));
+
+
+                console.log(currentUser); 
 
                 // const token1 = currentUser.token;
                 // console.log(token1)
