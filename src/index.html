@@ -1,47 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in</title>
-
+    <title>Site Name | Log in</title>
+    <!-- importing netlify identity widget -->
     <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
-    <h1> Welcome to site</h1>
+    <h1> Welcome to Site:Name</h1>
 
-    <p>Get Quality Content</p>
+    <p>A Place to get Quality Content</p>
 
     <!-- <div data-netlify-identity-menu></div> -->
-
-    <div data-netlify-identity-button></div>
+    <!-- login and signup button, we can have both of them seperately, read the docs - netlify identity widget -->
+    <div data-netlify-identity-button></div> 
+    
+    <!-- display for current user role i.e, premium or free -->
     <pre></pre>
 
-
     <div id="premium"></div>
-
 
     <h2>
         Get Locked Content !!
     </h2>
-    <button id="manage-sub"> Manage Subscription</button>
 
+    <!-- link to stripe billing portal -->
+    <button id="manage-sub"> Manage Subscription</button>
     <script>
         
-        // getting current user and roles
+        // getting current user and roles on first page load i.e, init()
         window.netlifyIdentity.on('init', (user) => {
             if(!user) return;
              window.netlifyIdentity.currentUser()
             .jwt(true)
             .then((token) => { 
 
-
                 // const currentUser = window.netlifyIdentity.currentUser();
-
+                // spliting token into parts to get the current token string
                 const parts = token.split('.');
                 const currentUser = JSON.parse(atob(parts[1]));
-
 
                 console.log(currentUser); 
 
@@ -49,12 +49,14 @@
                 // console.log(token1)
                 const roles =  currentUser.app_metadata.roles;
 
+                // displaying the role on the page after login
                 document.querySelector('pre').innerHTML = JSON.stringify(roles, null, 2);
 
+                // getting stripe billing portal link after fetching it from netlify / create manage link
                 function redirectToManage(){
                     fetch('/.netlify/functions/create-manage-link', {
                     method : 'POST',
-                    headers: {
+                    headers: {  
                          Authorization: `Bearer ${token}`,
                      },
                 })
@@ -64,10 +66,11 @@
                 })
 
                 }
-
-
+                // adding billing portal link to div
                 document.querySelector('#manage-sub').addEventListener('click', redirectToManage);
                 
+
+                // premium content access 
                 function getPremiumContent(){
 
                     fetch('/.netlify/functions/premium-content', {
@@ -91,9 +94,6 @@
             })
 
             })
-
-
-
 
     </script>
     

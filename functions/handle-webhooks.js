@@ -2,6 +2,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const {faunaFetch} = require('../utils/fauna')
 const fetch = require('node-fetch')
 
+
+// webhook triggred when customer update their subscription
 exports.handler = async ({ body, headers }, context) => {
     try {
       const stripeEvent = stripe.webhooks.constructEvent(
@@ -21,24 +23,25 @@ exports.handler = async ({ body, headers }, context) => {
         // const role = `sub: ${plan.split('-')[0].toLowerCase()}`;
 
 
+
+        // query to be send to fauna.com
         const query = `
-    query($stripeID : ID!) {
-        getUserByStripeID(stripeID: $stripeID ){
-          netlifyID
-        }
-        
-      }`;
+              query($stripeID : ID!) {
+                  getUserByStripeID(stripeID: $stripeID ){
+                    netlifyID
+                  }
+                  
+                }`;
 
       const variables = { stripeID}; 
-
-
 
       const result = await faunaFetch({query, variables});
 
       console.log(result);
       const netlifyID = result.data.getUserByStripeID.netlifyID;
 
-
+      
+      // updating the plan / subscription of current user i.e premium or free
       const {identity} = context.clientContext;
       const response = await fetch(`${identity.url}/admin/users/${netlifyID}`, {
           method: 'PUT',

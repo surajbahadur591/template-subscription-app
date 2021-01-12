@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 
+// a simplified function to fetch data from fauna.com by passing required query/mutation and variables
 exports.faunaFetch = async ({query , variables}) => {
 
     return  await fetch("https://graphql.fauna.com/graphql", {

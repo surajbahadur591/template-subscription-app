@@ -1,43 +1,15 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const fetch = require('node-fetch');
-// const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const {faunaFetch} = require('../utils/fauna')
 
 
+//this is handler for creating stripe billing portal link used for accepting payment
 exports.handler  = async (event, context) => {
     const {user} = context.clientContext;
 
-    console.log(user);
-    
+    console.log(user);  
 
-    
-    // const  netlifyID = user.sub; 
-
-    // const response = await fetch("https://graphql.fauna.com/graphql", {
-    //     method : 'POST',
-    //     headers: {
-    //         Authorization: `Bearer ${process.env.FAUNA_SERVER_KEY}`,
-    //     },
-    //     body : JSON.stringify({
-    //         query: `
-    //         query($netlifyID : ID!) {
-    //             getUserByNetlifyID(netlifyID: $netlifyID ){
-    //               stripeID
-    //               netlifyID
-    //             }
-                
-    //           }
-    //         `,  
-    //         variables : {
-    //             netlifyID,
-                
-    //         }
-    //     })
-    // });
-
-   
-
-
+    // query to be send to fauna.com
     const query = `
     query($netlifyID : ID!) {
         getUserByNetlifyID(netlifyID: $netlifyID ){
@@ -47,10 +19,11 @@ exports.handler  = async (event, context) => {
         
       }`;
 
+      // set of variables to be send to fauna.com
       const variables = { netlifyID : user.sub}; 
 
-
-
+      // fetching the response from fauna 
+      // faunafetch is function for easy query/mutation
       const result = await faunaFetch({query, variables});
 
       console.log(result);
