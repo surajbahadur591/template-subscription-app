@@ -12,12 +12,12 @@ exports.handler = async ({ body, headers }, context) => {
   
       if (stripeEvent.type === 'customer.subscription.updated') {
         const subscription = stripeEvent.data.object;
-        console.log(JSON.stringify(subscription, null, 2))
+        // console.log(JSON.stringify(subscription, null, 2))
 
         const stripeID = subscription.customer;
         const plan = subscription.items.data[0].plan.nickname;
 
-        const role = `sub: ${plan.split('-')[0].tolowercase()}`;
+        // const role = `sub: ${plan.split('-')[0].toLowerCase()}`;
 
 
         const query = `
@@ -44,7 +44,7 @@ exports.handler = async ({ body, headers }, context) => {
           },
           body: JSON.stringify({
               app_metadata: {
-                  roles: [role]
+                  roles: [plan]
               }
           })
       }).then(res => res.json())
