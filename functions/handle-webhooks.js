@@ -32,11 +32,7 @@ exports.handler = async ({ body, headers }, context) => {
       const variables = { stripeID}; 
 
 
-      const data = {
-        app_metadata: {
-            roles: [plan]
-        }
-    }
+
       const result = await faunaFetch({query, variables});
 
       console.log(result);
@@ -49,7 +45,11 @@ exports.handler = async ({ body, headers }, context) => {
           headers: {
               Authorization: `Bearer ${identity.token}`
           },
-          body: JSON.parse(data)
+          body: JSON.stringify({
+              app_metadata: {
+                  roles: [plan]
+              }
+          })
       }).then(res => res.json())
       .catch(err => console.log(err))
 
