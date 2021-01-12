@@ -45,11 +45,11 @@ exports.handler = async ({ body, headers }, context) => {
           headers: {
               Authorization: `Bearer ${identity.token}`
           },
-          body: `{
+          body: JSON({
               app_metadata: {
                   roles: [plan]
               }
-          }`
+          })
       }).then(res => res.json())
       .catch(err => console.log(err))
 
