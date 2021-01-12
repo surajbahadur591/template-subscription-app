@@ -78,7 +78,7 @@
                 })
                 .then(res => res.text())
                 .then(content => {
-                    document.querySelector('#premium').innerText = content;
+                    document.querySelector('#premium').innerHTML = content;
                 })
                 .then(err => console.log(err))
 
