@@ -45,11 +45,11 @@ exports.handler = async ({ body, headers }, context) => {
           headers: {
               Authorization: `Bearer ${identity.token}`
           },
-          body: JSON.stringify({
+          body: `{
               app_metadata: {
                   roles: [plan]
               }
-          })
+          }`
       }).then(res => res.json())
       .catch(err => console.log(err))
 
@@ -58,7 +58,7 @@ exports.handler = async ({ body, headers }, context) => {
       
       return {
         statusCode: 200,
-        body: JSON.stringify({app_metadata : { roles: ['Premium-subscription']}}),
+        body: 'ok',
       };
     } catch (err) {
       console.log(`Stripe webhook failed with ${err}`);
