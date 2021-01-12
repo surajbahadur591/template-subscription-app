@@ -19,6 +19,9 @@
     <pre></pre>
 
 
+    <div id="premium"></div>
+
+
     <h2>
         Get Locked Content !!
     </h2>
@@ -62,8 +65,25 @@
 
                 }
 
+
                 document.querySelector('#manage-sub').addEventListener('click', redirectToManage);
-               
+                
+                function getPremiumContent(){
+
+                    fetch('/.netlify/functions/premium-content', {
+                    method : 'POST',
+                    headers: {
+                         Authorization: `Bearer ${token}`,
+                     },
+                })
+                .then(res => res.text)
+                .then(content => {
+                    document.querySelector('#premium').innerText = content;
+                })
+                .then(err => console.log(err))
+
+                }
+
             })
 
             })
