@@ -45,7 +45,7 @@ exports.handler = async ({ body, headers }, context) => {
           headers: {
               Authorization: `Bearer ${identity.token}`
           },
-          body: JSON({
+          body: JSON.parse({
               app_metadata: {
                   roles: [plan]
               }
