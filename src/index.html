@@ -76,7 +76,7 @@
                          Authorization: `Bearer ${token}`,
                      },
                 })
-                .then(res => res.text)
+                .then(res => res.text())
                 .then(content => {
                     document.querySelector('#premium').innerText = content;
                 })
