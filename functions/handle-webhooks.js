@@ -12,10 +12,11 @@ exports.handler = async ({ body, headers }, context) => {
   
       if (stripeEvent.type === 'customer.subscription.updated') {
         const subscription = stripeEvent.data.object;
-        // console.log(JSON.stringify(subscription, null, 2))
+        console.log(JSON.stringify(subscription, null, 2))
 
         const stripeID = subscription.customer;
         const plan = subscription.items.data[0].plan.nickname;
+        console.log(JSON.stringify(plan))
 
         // const role = `sub: ${plan.split('-')[0].toLowerCase()}`;
 
@@ -55,7 +56,7 @@ exports.handler = async ({ body, headers }, context) => {
   
       return {
         statusCode: 200,
-        body: JSON.stringify(subscription),
+        body: 'ok',
       };
     } catch (err) {
       console.log(`Stripe webhook failed with ${err}`);
