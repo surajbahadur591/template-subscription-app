@@ -23,7 +23,7 @@ exports.handler = async ({ body, headers }, context) => {
 
         const query = `
     query($stripeID : ID!) {
-        getUserByNetlifyID(stripeID: $stripeID ){
+        getUserByStripeID(stripeID: $stripeID ){
           netlifyID
         }
         
@@ -34,6 +34,8 @@ exports.handler = async ({ body, headers }, context) => {
 
 
       const result = await faunaFetch({query, variables});
+
+      console.log(result);
       const netlifyID = result.data.getUserByStripeID.netlifyID;
 
 
